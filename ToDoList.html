@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List App</title>
+  <style>
+   
+
+    body {
+      background-color:lightblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+       }
+
+    .todo-container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px black;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .todo-container h2 {
+      text-align: center;
+       color: ;
+    }
+
+    #input {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid grey;
+      border-radius: 5px;
+     
+    }
+
+    #add-btn {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    #add-btn:hover {
+      background-color: black;
+    }
+
+
+    ul#list-container li {
+      background-color: pink;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    ul#list-container li button {
+      background-color: red;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    ul#list-container li button:hover {
+      background-color: black;
+    }
+
+    @media (max-width: 500px) {
+      #input {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="todo-container">
+    <h2>My To-Do List</h2>
+    <div class="input-group">
+      <input id="input" type="text" placeholder="Enter a task...">
+      <button id="add-btn" onclick="add()">Add</button>
+    </div>
+    <ul id="list-container">
+     
+    </ul>
+  </div>
+
+  <script>
+    var ul = document.getElementById("list-container");
+    var input = document.getElementById("input");
+
+    function add() {
+      var value = input.value.trim();
+      if (value === "") {
+        alert("Please enter a task.");
+        return;
+      }
+
+      var listitem = document.createElement("li");
+      listitem.innerHTML = value + 
+        "<button onclick='deleteitem(event)'>Delete</button>";
+      ul.appendChild(listitem);
+      input.value = "";
+    }
+
+    function deleteitem(event) {
+      event.target.parentElement.remove();
+    }
+    input.addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        add();
+      }
+    });
+  </script>
+
+</body>
+</html>
